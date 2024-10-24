@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from models.base import Base
-from database import engine
-from api import user
-from api import weather
+from app.models.base import Base
+from app.database import engine
+from app.api import user, weather
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)

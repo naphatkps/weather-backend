@@ -1,8 +1,8 @@
 from fastapi import Depends
 from fastapi.params import Annotated
 from pydantic import BaseModel, EmailStr
-from models.user import User
-from database import  SessionLocal
+from app.models.user import User
+from app.database import  SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter
 
