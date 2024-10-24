@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pydantic[email]
+
+openmeteo-requests
+requests-cache 
+retry-requests 
+numpy 
+pandas
