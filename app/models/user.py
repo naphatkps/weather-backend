@@ -1,8 +1,15 @@
-from app.models.base import Base
-from sqlalchemy import Column, Integer, String
+from pydantic import BaseModel, Field, EmailStr
+from typing import Optional
 
-class User(Base):
-    __tablename__ = 'users'
+class UserRequest(BaseModel):
+    email: EmailStr
+
+class UserBase(UserRequest):
+    id: Optional[str] = Field(default=None, alias="_id")
+
+    class Config:
+        orm_mode = True
+
+class UserResponse(UserRequest):
+    pass
     
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)

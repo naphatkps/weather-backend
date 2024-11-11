@@ -1,11 +1,13 @@
 fastapi[standard]
 uvicorn[standard]
-sqlalchemy
 psycopg2-binary
 pydantic[email]
+pymongo
 
 openmeteo-requests
 requests-cache 
 retry-requests 
 numpy 
 pandas
+
+apscheduler

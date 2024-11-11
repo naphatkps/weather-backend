@@ -1,43 +1,6 @@
 version: '3.8'
 
 services:
-  db:
-    container_name: pg_container
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: test_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    networks:
-      - backend-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d test_db"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
-
-  pgadmin:
-    container_name: pgadmin4_container
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-    networks:
-      - backend-network
-    depends_on:
-      db:
-        condition: service_healthy
-
   backend:
     container_name: fastapi_container
     build:
@@ -45,16 +8,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - backend-network
-
-volumes:
-  pg-data:
-  pgadmin-data:
-
-networks:
-  backend-network:
-    driver: bridge

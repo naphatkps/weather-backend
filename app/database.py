@@ -1,8 +1,4 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-from app.config import Config
-
-engine = create_engine(Config.SQLALCHEMY_DATABASE_URL)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+from pymongo import MongoClient
+from app.config import config
+client = MongoClient(config.DATABASE_URL)
+db = client['weather']
